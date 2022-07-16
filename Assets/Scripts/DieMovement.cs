@@ -32,13 +32,15 @@ public class DieMovement : MonoBehaviour
 
         float distanceX = mousePosition.x - arrow.transform.position.x;
         float distanceY = mousePosition.y - arrow.transform.position.y;
+        float velocityX = Mathf.Abs(rb2d.velocity.x);
+        float velocityY = Mathf.Abs(rb2d.velocity.y);
 
-        if (MouseClick)
+        if (MouseClick && velocityX < 0.1 && velocityY < 0.1)
         {
             arrow.SetActive(true);
         }
 
-        if (MouseHeld)
+        if (MouseHeld && velocityX < 0.1 && velocityY < 0.1)
         {
             float angle = (Mathf.Atan(distanceY / distanceX) * Mathf.Rad2Deg);
             angle = distanceX < 0 ? angle + 180 : angle;
@@ -58,7 +60,7 @@ public class DieMovement : MonoBehaviour
             arrow.transform.localScale = new Vector3(distance, 1f, 1f);
         }
 
-        if (MouseRelease)
+        if (MouseRelease && velocityX < 0.1 && velocityY < 0.1 && arrow.activeSelf)
         {
             
             arrow.SetActive(false);
