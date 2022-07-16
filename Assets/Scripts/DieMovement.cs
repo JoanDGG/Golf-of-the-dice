@@ -66,15 +66,22 @@ public class DieMovement : MonoBehaviour
             arrow.SetActive(false);
             Stroke(distanceX * StrokePower, distanceY * StrokePower);
         }
-
-        if (Cursor.visible)
-        {
-            Cursor.visible = false;
-        }
     }
 
     private void Stroke(float x, float y)
     {
         rb2d.AddForce(new Vector2(x, y));
+        int numberRolled = Mathf.RoundToInt((Random.value) * 6);
+        numberRolled = numberRolled == 0 ? 1 : numberRolled;
+        Debug.Log(numberRolled);
+        object[] obj = GameObject.FindSceneObjectsOfType(typeof (GameObject));
+        foreach (object o in obj)
+        {
+            GameObject g = (GameObject) o;
+            if (g.CompareTag(numberRolled.ToString()))
+            {
+                Debug.Log(g.name);
+            }
+        }
     }
 }
