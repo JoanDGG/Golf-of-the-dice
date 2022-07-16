@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685023585148598538, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1685023585148598538, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 541617037}
   m_Layer: 0
   m_Name: Pond
-  m_TagString: Untagged
+  m_TagString: 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 619735620}
   m_Layer: 0
   m_Name: SandTrap
-  m_TagString: Untagged
+  m_TagString: 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -522,7 +522,7 @@ Transform:
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5087}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604135991
 GameObject:
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 1724474832}
   m_Layer: 0
   m_Name: Hole
-  m_TagString: Untagged
+  m_TagString: 3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -800,5 +800,5 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
