@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1287354600974895732, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1368422392777124467, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
       propertyPath: m_Name
       value: PinkDice
@@ -176,6 +180,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1685023585148598538, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065862604634203096, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
