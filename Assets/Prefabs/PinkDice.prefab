@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4065862604634203096}
   m_Layer: 0
   m_Name: PinkDice
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0317cc1977105d84c8a52cb0521ae0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StrokePower: 10
 --- !u!58 &1825310596909565547
 CircleCollider2D:
   m_ObjectHideFlags: 0

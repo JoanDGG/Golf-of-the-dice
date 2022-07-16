@@ -9,15 +9,17 @@ public class DieMovement : MonoBehaviour
     private bool MouseHeld = false;
     private bool MouseRelease = false;
     private Vector3 mousePosition;
-    private float StrokePower = 0;
+    public float StrokePower;
 
     private GameObject arrow;
+    private Rigidbody2D rb2d;
 
     // Start is called before the first frame update
     void Start()
     {
         arrow = GameObject.Find("ArrowRotation");
         arrow.SetActive(false);
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -27,8 +29,9 @@ public class DieMovement : MonoBehaviour
         MouseHeld = Input.GetMouseButton(0);
         MouseRelease = Input.GetMouseButtonUp(0);
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float distanceX = 1f; // Default value
-        float distanceY = 1f; // Default value
+
+        float distanceX = mousePosition.x - arrow.transform.position.x;
+        float distanceY = mousePosition.y - arrow.transform.position.y;
 
         if (MouseClick)
         {
@@ -37,25 +40,39 @@ public class DieMovement : MonoBehaviour
 
         if (MouseHeld)
         {
-            distanceX = mousePosition.x - arrow.transform.position.x;
-            distanceY = mousePosition.y - arrow.transform.position.y;
             float angle = (Mathf.Atan(distanceY / distanceX) * Mathf.Rad2Deg);
             angle = distanceX < 0 ? angle + 180 : angle;
             arrow.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+
+            float distance = Mathf.Sqrt((distanceX * distanceX) + (distanceY * distanceY));
+
+            if (distance < 0.5f)
+            {
+                distance = 0.5f;
+            }
+            else if (distance > 2f)
+            {
+                distance = 2f;
+            }
+
+            arrow.transform.localScale = new Vector3(distance, 1f, 1f);
         }
 
         if (MouseRelease)
         {
-            distanceX = mousePosition.x - arrow.transform.position.x;
-            distanceY = mousePosition.y - arrow.transform.position.y;
-            StrokePower = Mathf.Sqrt((distanceX * distanceX) + (distanceY * distanceY));
-            Debug.Log("Power: " + StrokePower.ToString("F2"));
+            
             arrow.SetActive(false);
+            Stroke(distanceX * StrokePower, distanceY * StrokePower);
         }
 
         if (Cursor.visible)
         {
             Cursor.visible = false;
         }
+    }
+
+    private void Stroke(float x, float y)
+    {
+        rb2d.AddForce(new Vector2(x, y));
     }
 }
