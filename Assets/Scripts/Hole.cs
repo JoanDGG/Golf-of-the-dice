@@ -23,7 +23,15 @@ public class Hole : MonoBehaviour
             {
                 ScorePoints(other.gameObject);
                 Destroy(other.gameObject);
-                SceneManager.LoadScene("MapSelection");
+                //SceneManager.LoadScene("MapSelection");
+                MapSelection.map++;
+                if (MapSelection.map < 6) {
+                    
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                } else {
+                    SceneManager.LoadScene("Scoreboard");
+                }
+                
             }
         }
     }
