@@ -29,7 +29,6 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Components
     private GameObject arrow;
     private Rigidbody2D rb2d;
-    private TurnManager TurnManager;
     //-------------------------------------
     new private Animator animation;
     private GameObject ObstaclesIndicator;
@@ -54,16 +53,14 @@ public class DieMovement : MonoBehaviourPunCallbacks
         arrow = gameObject.transform.Find("ArrowRotation").gameObject;
         arrow.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
-        TurnManager = GameObject.Find("Main Camera").GetComponent<TurnManager>();
         view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player: " + PhotonNetwork.LocalPlayer.ActorNumber + " Turn: " + turn);
-        if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
-        {
+        //if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        //{
             // Get inputs
             MouseClick = Input.GetMouseButtonDown(0);
             MouseHeld = Input.GetMouseButton(0);
@@ -114,7 +111,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
                 StartCoroutine("RollTheDice");
                 //-------------------------------------
             }
-        }
+        //}
     }
 
     private void Stroke(float x, float y)
