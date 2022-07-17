@@ -31,7 +31,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     private Rigidbody2D rb2d;
     private TurnManager TurnManager;
     //-------------------------------------
-    private Animator animation;
+    new private Animator animation;
     private GameObject ObstaclesIndicator;
     private Animator animationObstaclesIndicator;
     //-------------------------------------

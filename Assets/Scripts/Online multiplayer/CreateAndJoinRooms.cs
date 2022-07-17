@@ -17,6 +17,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     // Online properties
     private RoomOptions roomOptions = new RoomOptions();
+    public float timeBetweenUpdates = 1.5f;
+    private float nextUpdateTime;
 
     public void CreateRoom()
     {
@@ -75,7 +77,11 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        UpdateRoomList(roomList);
+        if(Time.time >= nextUpdateTime)
+        {
+            UpdateRoomList(roomList);
+            nextUpdateTime = Time.time + timeBetweenUpdates;
+        }
     }
 
     private void UpdateRoomList(List<RoomInfo> list)
