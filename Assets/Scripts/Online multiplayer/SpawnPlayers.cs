@@ -24,4 +24,9 @@ public class SpawnPlayers : MonoBehaviourPunCallbacks
     {
         debugText.text = PhotonNetwork.CurrentRoom.ToString();
     }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        debugText.text = PhotonNetwork.CurrentRoom.ToString();
+    }
 }

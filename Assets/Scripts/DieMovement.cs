@@ -30,7 +30,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     private GameObject arrow;
     private Rigidbody2D rb2d;
     //-------------------------------------
-    private Animator animation;
+    new private Animator animation;
     private GameObject ObstaclesIndicator;
     private Animator animationObstaclesIndicator;
     //-------------------------------------

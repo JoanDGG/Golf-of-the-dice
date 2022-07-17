@@ -10,6 +10,10 @@ public class SelectRandomName : MonoBehaviourPunCallbacks
     private void Start()
     {
         usernameInput = GameObject.Find("UserName_InputField").GetComponent<InputField>();
+        if(!string.IsNullOrEmpty(PhotonNetwork.NickName))
+        {
+            usernameInput.text = PhotonNetwork.NickName;
+        }
     }
 
     public static void CheckUsername()
