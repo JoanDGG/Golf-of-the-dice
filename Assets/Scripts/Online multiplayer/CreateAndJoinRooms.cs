@@ -11,7 +11,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public InputField roomInput;
     public Text debugMessage;
     public Text LoadingText;
-    public RoomItem roomItemPrefab;
+    public RoomItem[] roomItemPrefabList = new RoomItem[4];
     List<RoomItem> roomItemList = new List<RoomItem>();
     public Transform contentObject;
 
@@ -40,7 +40,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
     public void JoinRoom(string roomName = null)
     {
         LoadingText.gameObject.SetActive(true);
-        if(roomName != null)
+        if(!string.IsNullOrEmpty(roomName))
         {
             PhotonNetwork.JoinRoom(roomName);
         }
@@ -94,7 +94,9 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
         foreach (RoomInfo room in list)
         {
-            RoomItem newRoom = Instantiate(roomItemPrefab, contentObject);
+            RoomItem newRoom = Instantiate(
+                roomItemPrefabList[Random.Range(0, roomItemPrefabList.Length - 1)], 
+                contentObject);
             newRoom.SetRoomName(room.Name);
             roomItemList.Add(newRoom);
         }
