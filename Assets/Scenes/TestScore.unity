@@ -1965,6 +1965,30 @@ MonoBehaviour:
   Value: 0
   ScoreText: {fileID: 2106433447}
   Hit: 0
+--- !u!1 &2140041305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5970386535235831456, guid: c984fbff274635449845b499d5632d98, type: 3}
+  m_PrefabInstance: {fileID: 982194840397861769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2140041306
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140041305}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6bcd7bbf1a1a38b4298d795ec9b7256c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &982194840397861769
 PrefabInstance:
   m_ObjectHideFlags: 0
