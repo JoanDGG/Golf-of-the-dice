@@ -24,6 +24,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Values
     public float StrokePower;
     private int numberRolled;
+    public static int turn = 1;
 
     // Components
     private GameObject arrow;
@@ -60,7 +61,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if(view.IsMine)
+        Debug.Log("Player: " + PhotonNetwork.LocalPlayer.ActorNumber + " Turn: " + turn);
+        if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             // Get inputs
             MouseClick = Input.GetMouseButtonDown(0);
@@ -183,7 +185,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
             }
         }
 
-        TurnManager.nextTurn();
+        CallSetting(); // Next Turn
         //-------------------------------------
         CleanIndicators();
 
@@ -202,6 +204,16 @@ public class DieMovement : MonoBehaviourPunCallbacks
         
         //-------------------------------------
 
+    }
+
+    private int nextTurn(int currentTurn)
+    {
+        currentTurn++;
+        if (currentTurn > PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            currentTurn = 1;
+        }
+        return currentTurn;
     }
 
     private void CleanIndicators()
@@ -224,8 +236,17 @@ public class DieMovement : MonoBehaviourPunCallbacks
         ObstaclesIndicator= GameObject.Find("Off-" + diceNumber.ToString());
         animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
         animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/On" + diceNumber.ToString()) as RuntimeAnimatorController;
-        
     }
 
-    
+    [PunRPC]
+    void Setting (int nextTurn)
+    {
+        turn = nextTurn;
+    }
+
+    void CallSetting()
+    {
+        view.RPC("Setting", RpcTarget.All, nextTurn(turn));
+    }
+
 }
