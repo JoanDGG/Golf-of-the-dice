@@ -30,7 +30,6 @@ public class Hole : MonoBehaviourPunCallbacks
             {
                 ScorePoints(other.gameObject);
                 Destroy(other.gameObject);
-                //SceneManager.LoadScene("MapSelection");
                 mapSelection.map++;
                 if (mapSelection.map < 6) {
                     

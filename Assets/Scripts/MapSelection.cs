@@ -17,7 +17,8 @@ public class MapSelection : MonoBehaviour
         if(SceneManager.GetActiveScene().name == "GolfingScene")
         {
             Debug.Log("Map: " + map);
-            Instantiate(maps[map], new Vector3(2.5f, -1.5f, 20), Quaternion.identity);
+            maps[map].SetActive(true);
+            // Instantiate(maps[map], new Vector3(2.5f, -1.5f, 20), Quaternion.identity);
         }
     }
 }

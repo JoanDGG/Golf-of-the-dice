@@ -192,6 +192,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
             current.transform.GetChild(0).gameObject.SetActive(true);
         
         }
+
+        CallSetting();
     }
 
     private int nextTurn(int currentTurn)
