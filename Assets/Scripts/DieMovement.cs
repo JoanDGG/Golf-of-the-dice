@@ -178,6 +178,9 @@ public class DieMovement : MonoBehaviourPunCallbacks
             if (g.CompareTag(numberRolled.ToString())) // Activate obstacles according to number rolled
             {
                 g.SetActive(true);
+
+                CleanIndicators();
+                ActivateIndicator(numberRolled);
             }
             else if (tags.Contains(g.tag)) // Dectivate obstacles according to number rolled
             {
@@ -218,17 +221,12 @@ public class DieMovement : MonoBehaviourPunCallbacks
 
     private void CleanIndicators()
     {
-        ObstaclesIndicator= GameObject.Find("Off-1");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off1") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-2");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off2") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-3");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off3") as RuntimeAnimatorController;
+        for (int j = 1; j<7; j++)
+        {
+            ObstaclesIndicator= GameObject.Find("Off-" + j.ToString());
+            animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
+            animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off" + j.ToString()) as RuntimeAnimatorController;
+        }
     }
 
     private void ActivateIndicator(int diceNumber)
