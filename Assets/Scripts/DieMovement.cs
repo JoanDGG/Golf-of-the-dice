@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DieMovement : MonoBehaviour
 {
@@ -94,15 +95,7 @@ public class DieMovement : MonoBehaviour
         numberRolled = Mathf.RoundToInt((Random.value) * 6);
         numberRolled = numberRolled == 0 ? 1 : numberRolled;
         Debug.Log("DICE: " + numberRolled);
-        object[] obj = GameObject.FindSceneObjectsOfType(typeof (GameObject));
-        foreach (object o in obj)
-        {
-            GameObject g = (GameObject) o;
-            if (g.CompareTag(numberRolled.ToString()))
-            {
-                Debug.Log(g.name);
-            }
-        }
+        StartCoroutine(ChangeEnvironment());
     }
     //--------------------------------------------------------------------------------------------------------
     private IEnumerator RollTheDice()
@@ -129,7 +122,30 @@ public class DieMovement : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         rend.sprite = diceSides[numberRolled*12-1];
-
     }
     //--------------------------------------------------------------------------------------------------------
+
+    private IEnumerator ChangeEnvironment()
+    {
+        yield return new WaitForSeconds(0.5f); // Delay code execution to allow die to speed up
+        while (Mathf.Abs(rb2d.velocity.x) >= 0.1 || Mathf.Abs(rb2d.velocity.y) >= 0.1) // Wait for die to stop
+        {
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        // Set active obstacles according to number rolled
+        string[] tags = {"1", "2", "3", "4", "5", "6"};
+        GameObject[] obj = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject g in obj)
+        {
+            if (g.CompareTag(numberRolled.ToString()))
+            {
+                g.SetActive(true);
+            }
+            else if (tags.Contains(g.tag))
+            {
+                g.SetActive(false);
+            }
+        }
+    }
 }
