@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 1267397134402617449}
   - component: {fileID: 1267397134402617448}
   - component: {fileID: 1267397134402617447}
+  - component: {fileID: 4065040216845131626}
+  - component: {fileID: 7282755067565937560}
+  - component: {fileID: 3731903563399291436}
   m_Layer: 0
   m_Name: On-5
   m_TagString: Untagged
@@ -102,3 +105,51 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &4065040216845131626
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267397134402617446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04105819, y: -0.015398023}
+  m_Size: {x: 3.605993, y: 2.0513356}
+  m_Direction: 1
+--- !u!70 &7282755067565937560
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267397134402617446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.07698631, y: 0.05132343}
+  m_Size: {x: 3.061984, y: 2.3991942}
+  m_Direction: 1
+--- !u!70 &3731903563399291436
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267397134402617446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06470744, y: -0.67133206}
+  m_Size: {x: 2.548309, y: 0.9911994}
+  m_Direction: 1
