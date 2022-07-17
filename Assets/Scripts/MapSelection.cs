@@ -15,9 +15,9 @@ public class MapSelection : MonoBehaviour
     {
         Debug.Log("Map: " + map);
         Instantiate(maps[map], new Vector3(2.5f, -1.5f, 20), Quaternion.identity);
-        start = GameObject.Find("StartingPoint");
+        /*start = GameObject.Find("StartingPoint");
         die = GameObject.Find("PinkDice");
-        die.transform.position = new Vector3(start.transform.position.x, start.transform.position.y, 0f);
+        die.transform.position = new Vector3(start.transform.position.x, start.transform.position.y, 0f);*/
     }
 
     // Update is called once per frame

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class DieMovement : MonoBehaviourPunCallbacks
 {
@@ -31,6 +32,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     private GameObject arrow;
     private Rigidbody2D rb2d;
     private GameObject start;
+    private GameObject name;
     //-------------------------------------
     new private Animator animation;
     private GameObject ObstaclesIndicator;
@@ -52,6 +54,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
         animation = GetComponent<Animator>();
         //-------------------------------------
 
+        name = gameObject.transform.Find("Canvas").gameObject.transform.Find("Name").gameObject;
+        name.GetComponent<Text>().text = PhotonNetwork.LocalPlayer.NickName;
         arrow = gameObject.transform.Find("ArrowRotation").gameObject;
         arrow.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
@@ -62,6 +66,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        name.transform.position = new Vector2(transform.position.x * 105 + 950, transform.position.y * 105 + 600);
         if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             // Get inputs
