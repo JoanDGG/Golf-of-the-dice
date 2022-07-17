@@ -62,8 +62,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        //if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
-        //{
+        if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
             // Get inputs
             MouseClick = Input.GetMouseButtonDown(0);
             MouseHeld = Input.GetMouseButton(0);
@@ -114,7 +114,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
                 StartCoroutine("RollTheDice");
                 //-------------------------------------
             }
-        //}
+        }
     }
 
     private void Stroke(float x, float y)
@@ -129,35 +129,38 @@ public class DieMovement : MonoBehaviourPunCallbacks
     //--------------------------------------------------------------------------------------------------------
     private IEnumerator RollTheDice()
     {
-        // Variable to contain random dice side number.
-        // It needs to be assigned. Let it be 0 initially
-        int randomDiceSide = 0;
-
-        // Loop to switch dice sides ramdomly
-        // before final side appears. n itterations here.
-
-        animation.enabled = false;
-
-        int n = 10;
-
-        for (int i = 0; i <= n; i++)
+        if(view.IsMine)
         {
-            // Pick up random value from 0 to 6 (All inclusive)
-            randomDiceSide = Random.Range(0, 72);   //72 sprites present with 12 variations of each side
+            // Variable to contain random dice side number.
+            // It needs to be assigned. Let it be 0 initially
+            int randomDiceSide = 0;
 
-            // Set sprite to upper face of dice from array according to random value
-            rend.sprite = diceSides[randomDiceSide];
+            // Loop to switch dice sides ramdomly
+            // before final side appears. n itterations here.
 
-            // Pause before next itteration
-            yield return new WaitForSeconds(0.05f);
+            animation.enabled = false;
+
+            int n = 10;
+
+            for (int i = 0; i <= n; i++)
+            {
+                // Pick up random value from 0 to 6 (All inclusive)
+                randomDiceSide = Random.Range(0, 72);   //72 sprites present with 12 variations of each side
+
+                // Set sprite to upper face of dice from array according to random value
+                rend.sprite = diceSides[randomDiceSide];
+
+                // Pause before next itteration
+                yield return new WaitForSeconds(0.05f);
+            }
+            //rend.sprite = diceSides[numberRolled*12-11];
+
+            animation.runtimeAnimatorController = Resources.Load("Dice/anim/DiceFace" + numberRolled) as RuntimeAnimatorController;
+            Debug.Log(animation.runtimeAnimatorController.name);
+            animation.enabled = true;
+
+            Debug.Log(numberRolled*12-1);
         }
-        //rend.sprite = diceSides[numberRolled*12-11];
-
-        animation.runtimeAnimatorController = Resources.Load("Dice/anim/DiceFace" + numberRolled) as RuntimeAnimatorController;
-        Debug.Log(animation.runtimeAnimatorController.name);
-        animation.enabled = true;
-
-        Debug.Log(numberRolled*12-1);
     }
     //--------------------------------------------------------------------------------------------------------
 
