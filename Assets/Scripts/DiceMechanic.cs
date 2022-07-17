@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class DiceMechanic : MonoBehaviour
+public class DiceMechanic : MonoBehaviourPunCallbacks
 {
     // Array of dice sides sprites to load from Resources folder
     private Sprite[] diceSides;
@@ -15,7 +16,8 @@ public class DiceMechanic : MonoBehaviour
     private Rigidbody2D rb2d;
     private float velocityX;
     private float velocityY;
-    
+
+    private PhotonView view;
 
 	// Use this for initialization
 	private void Start () {
@@ -23,6 +25,7 @@ public class DiceMechanic : MonoBehaviour
         // Assign Renderer component
         rend = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
+        view = GetComponent<PhotonView>();
 
         // Load dice sides sprites to array from Dice subfolder of Resources folder
         diceSides = Resources.LoadAll<Sprite>("Dice");
@@ -30,13 +33,16 @@ public class DiceMechanic : MonoBehaviour
 	}
 
     private void Update(){
-        MouseRelease = Input.GetMouseButtonUp(0);
-        velocityX = Mathf.Abs(rb2d.velocity.x);
-        velocityY = Mathf.Abs(rb2d.velocity.y);
-
-        if (MouseRelease && velocityX < 0.1 && velocityY < 0.1)
+        if(view.IsMine)
         {
-            StartCoroutine("RollTheDice");
+            MouseRelease = Input.GetMouseButtonUp(0);
+            velocityX = Mathf.Abs(rb2d.velocity.x);
+            velocityY = Mathf.Abs(rb2d.velocity.y);
+
+            if (MouseRelease && velocityX < 0.1 && velocityY < 0.1)
+            {
+                StartCoroutine("RollTheDice");
+            }
         }
     }
 	

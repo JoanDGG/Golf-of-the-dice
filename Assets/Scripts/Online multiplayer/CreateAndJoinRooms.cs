@@ -8,74 +8,89 @@ using Photon.Realtime;
 public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     // UI
-    public InputField usernameInput;
     public InputField roomInput;
-    public Text currentUsername;
+    public Text debugMessage;
+    public Text LoadingText;
+    public RoomItem roomItemPrefab;
+    List<RoomItem> roomItemList = new List<RoomItem>();
+    public Transform contentObject;
 
     // Online properties
     private RoomOptions roomOptions = new RoomOptions();
 
     public void CreateRoom()
     {
-        string lobbyName = usernameInput.text;
+        LoadingText.gameObject.SetActive(true);
+        string lobbyName = PhotonNetwork.NickName;
         if(!string.IsNullOrWhiteSpace(lobbyName))
         {
-            CheckUsername();
             roomOptions.MaxPlayers = 6;
+            SelectRandomName.CheckUsername();
             PhotonNetwork.CreateRoom(lobbyName, roomOptions);
         }
         else
         {
-            if(!currentUsername.text.Contains("Please enter a username name"))
-                currentUsername.text += "\nPlease enter a username name";
+            debugMessage.text = "Please enter a username name to create a room";
+            LoadingText.gameObject.SetActive(false);
         }
     }
 
-    public void JoinRoom()
+    public void JoinRoom(string roomName = null)
     {
-        string lobbyName = roomInput.text;
-        if(!string.IsNullOrWhiteSpace(lobbyName))
+        LoadingText.gameObject.SetActive(true);
+        if(roomName != null)
         {
-            CheckUsername();
-            PhotonNetwork.JoinRoom(roomInput.text);
+            PhotonNetwork.JoinRoom(roomName);
         }
         else
         {
-            if(!currentUsername.text.Contains("Please enter a lobby name"))
-                currentUsername.text += "\nPlease enter a lobby name";
+            string lobbyName = roomInput.text;
+            if(!string.IsNullOrWhiteSpace(lobbyName))
+            {
+                SelectRandomName.CheckUsername();
+                PhotonNetwork.JoinRoom(roomInput.text);
+            }
+            else
+            {
+                debugMessage.text += "Please enter a lobby name";
+                LoadingText.gameObject.SetActive(false);
+            }
         }
     }
 
     public override void OnJoinedRoom()
     {
-        currentUsername.text += "\n" + PhotonNetwork.CurrentRoom;
-        foreach(Player player in PhotonNetwork.PlayerList) { print(player); }
-        //PhotonNetwork.LoadLevel("GameScene");
+        foreach(Player player in PhotonNetwork.PlayerList) 
+        { 
+            print(player);
+            print(player.ActorNumber); 
+        }
+        PhotonNetwork.LoadLevel("GameTestScene");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        if(!currentUsername.text.Contains("No match found"))
-            currentUsername.text += "\nNo match found";
+        debugMessage.text += "No match found";
     }
 
-    private void CheckUsername()
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        string userName = usernameInput.text;
-        if(!string.IsNullOrWhiteSpace(userName))
-        {
-            PhotonNetwork.NickName = usernameInput.text;
-        }
-        else
-        {
-            SetRandomName();
-        }
-        currentUsername.text = "Current Username: " + PhotonNetwork.NickName;
+        UpdateRoomList(roomList);
     }
 
-    public void SetRandomName()
+    private void UpdateRoomList(List<RoomInfo> list)
     {
-        PhotonNetwork.NickName = AINamesGenerator.Utils.GetRandomName();
-        usernameInput.text = PhotonNetwork.NickName;
+        foreach (RoomItem item in roomItemList)
+        {
+            Destroy(item.gameObject);
+        }
+        roomItemList.Clear();
+
+        foreach (RoomInfo room in list)
+        {
+            RoomItem newRoom = Instantiate(roomItemPrefab, contentObject);
+            newRoom.SetRoomName(room.Name);
+            roomItemList.Add(newRoom);
+        }
     }
 }

@@ -7,25 +7,29 @@ using Photon.Pun;
 public class Connect2Server : MonoBehaviourPunCallbacks
 {
     public GameObject LoadingText;
-    public Button CreateButton;
-    public Button JoinButton;
+    public GameObject onlinePanel;
+    public Button connectButton;
     
     private void Start()
     {
-        PhotonNetwork.ConnectUsingSettings();
-        CreateButton.interactable = false;
-        JoinButton.interactable = false;
+        LoadingText.SetActive(false);
+        onlinePanel.SetActive(false);
     }
+
+    public void Connect()
+    {
+        LoadingText.SetActive(true);
+        SelectRandomName.CheckUsername();
+        PhotonNetwork.ConnectUsingSettings();
+        connectButton.interactable = false;
+    }
+
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnJoinedLobby()
-    {
-        CreateButton.interactable = true;
-        JoinButton.interactable = true;
+        onlinePanel.SetActive(true);
         LoadingText.SetActive(false);
+        connectButton.gameObject.SetActive(false);
     }
 }
