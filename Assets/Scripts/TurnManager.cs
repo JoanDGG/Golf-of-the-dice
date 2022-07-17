@@ -11,6 +11,7 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Disable all players other than the one whose turn it is
         for (int i = 0; i < 6; i++)
         {
             if (players[i] != null && i != turn)
@@ -20,24 +21,19 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void nextTurn()
     {
-        validateTurn();
+        validateTurn(); // Check turn
 
-        players[turn].GetComponent<DieMovement>().enabled = false;
+        players[turn].GetComponent<DieMovement>().enabled = false; // Disable die that just moved
         turn++;
 
-        validateTurn();
+        validateTurn(); // Check turn
 
-        players[turn].GetComponent<DieMovement>().enabled = true;
+        players[turn].GetComponent<DieMovement>().enabled = true; // Enable next die
     }
 
+    // Makes sure the current turn belongs to a player
     private void validateTurn()
     {
         while (players[turn] == null)
