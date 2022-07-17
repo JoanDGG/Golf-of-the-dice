@@ -67,7 +67,7 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
             print(player);
             print(player.ActorNumber); 
         }
-        PhotonNetwork.LoadLevel("GameTestScene");
+        PhotonNetwork.LoadLevel("TestSelect");
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
