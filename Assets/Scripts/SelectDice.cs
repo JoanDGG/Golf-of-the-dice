@@ -9,10 +9,12 @@ public class SelectDice : MonoBehaviourPunCallbacks
     private Sprite[] diceSides;
     private SpriteRenderer rend;
     private PhotonView view;
-    public static bool changeScene;
+    public bool changeScene;
+    private MapSelection mapSelection;
 
     private void Start()
     {
+        mapSelection = FindObjectOfType<MapSelection>();
         rend = GetComponent<SpriteRenderer>();
         diceSides = Resources.LoadAll<Sprite>("DiceSides/");
         view = GetComponent<PhotonView>();
@@ -47,10 +49,10 @@ public class SelectDice : MonoBehaviourPunCallbacks
                 yield return new WaitForSeconds(0.05f);
             }
             finalSide = randomDiceSide + 1;
-            MapSelection.map = randomDiceSide;
             Debug.Log(finalSide);
             yield return new WaitForSeconds(1f);
             CallSetting(true);
+            CallSetMap(randomDiceSide);
         }
     }
 
@@ -63,5 +65,16 @@ public class SelectDice : MonoBehaviourPunCallbacks
     void CallSetting(bool scene)
     {
         view.RPC("Setting", RpcTarget.All, scene);
+    }
+
+    [PunRPC]
+    void Map (int map)
+    {
+        mapSelection.map = map;
+    }
+
+    void CallSetMap(int map)
+    {
+        view.RPC("Map", RpcTarget.All, map);
     }
 }

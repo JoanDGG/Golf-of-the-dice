@@ -24,7 +24,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Values
     public float StrokePower;
     private int numberRolled;
-    public static int turn = 1;
+    public int turn = 1;
     public int numberStrokes = 0;
 
     // Components
@@ -217,14 +217,19 @@ public class DieMovement : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void Setting (int nextTurn)
+    void Setting (int currentTurn)
     {
-        turn = nextTurn;
+        currentTurn++;
+        if (currentTurn > PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            currentTurn = 1;
+        }
+        turn = currentTurn;
     }
 
     void CallSetting()
     {
-        view.RPC("Setting", RpcTarget.All, nextTurn(turn));
+        view.RPC("Setting", RpcTarget.All, turn);
     }
 
 }

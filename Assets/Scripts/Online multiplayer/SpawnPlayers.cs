@@ -8,16 +8,18 @@ using Photon.Realtime;
 public class SpawnPlayers : MonoBehaviourPunCallbacks
 {
     public GameObject playerPrefab;
-    public Text debugText;
+    private Text debugText;
     public Transform[] spawnPoints = new Transform[6];
 
     private void Start()
     {
+        debugText = GameObject.Find("DebugText_Text").GetComponent<Text>();
         PhotonNetwork.Instantiate(
             playerPrefab.name, 
             spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber - 1].position, 
             Quaternion.identity);
-        debugText.text = PhotonNetwork.CurrentRoom.ToString();
+        debugText.text = PhotonNetwork.CurrentRoom.ToString() 
+        + "\n" +  PhotonNetwork.LocalPlayer;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

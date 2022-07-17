@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
-public class Hole : MonoBehaviour
+public class Hole : MonoBehaviourPunCallbacks
 {
 
     public float velocityX;
     public float velocityY;
+    private MapSelection mapSelection;
 
     private void Awake()
     {
         gameObject.GetComponent<Collider2D>().isTrigger = true;
+    }
+
+    private void Start()
+    {
+        mapSelection = FindObjectOfType<MapSelection>();
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -24,12 +31,13 @@ public class Hole : MonoBehaviour
                 ScorePoints(other.gameObject);
                 Destroy(other.gameObject);
                 //SceneManager.LoadScene("MapSelection");
-                MapSelection.map++;
-                if (MapSelection.map < 6) {
+                mapSelection.map++;
+                if (mapSelection.map < 6) {
                     
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    PhotonNetwork.LoadLevel("GolfingScene");
+
                 } else {
-                    SceneManager.LoadScene("Scoreboard");
+                    PhotonNetwork.LoadLevel("Scoreboard");
                 }
                 
             }
