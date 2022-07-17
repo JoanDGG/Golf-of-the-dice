@@ -218,6 +218,18 @@ PrefabInstance:
       propertyPath: StrokePower
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4722024489950811859, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4722024489950811859, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1185073634c9d4f8f9b2dbcad73da955, type: 2}
+    - target: {fileID: 4722024489950811859, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 281e8e13a0cd341df93e883897a9df7a, type: 3}
 --- !u!1001 &370902186

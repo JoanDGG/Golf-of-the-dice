@@ -29,6 +29,9 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Components
     private GameObject arrow;
     private Rigidbody2D rb2d;
+    //-------------------------------------
+    private Animator animation;
+    //-------------------------------------
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +41,10 @@ public class DieMovement : MonoBehaviourPunCallbacks
         rend = GetComponent<SpriteRenderer>();
 
         // Load dice sides sprites to array from Dice subfolder of Resources folder
-        diceSides = Resources.LoadAll<Sprite>("Dice");
+        diceSides = Resources.LoadAll<Sprite>("Dice/sprites");
+
+        //Gets the animation from the object
+        animation = GetComponent<Animator>();
         //-------------------------------------
 
         arrow = GameObject.Find("ArrowRotation");
@@ -121,6 +127,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
         // Loop to switch dice sides ramdomly
         // before final side appears. n itterations here.
 
+        animation.enabled = false;
+
         int n = 10;
 
         for (int i = 0; i <= n; i++)
@@ -128,14 +136,19 @@ public class DieMovement : MonoBehaviourPunCallbacks
             // Pick up random value from 0 to 6 (All inclusive)
             randomDiceSide = Random.Range(0, 72);   //72 sprites present with 12 variations of each side
 
-
             // Set sprite to upper face of dice from array according to random value
             rend.sprite = diceSides[randomDiceSide];
 
             // Pause before next itteration
             yield return new WaitForSeconds(0.05f);
         }
-        rend.sprite = diceSides[numberRolled*12-1];
+        //rend.sprite = diceSides[numberRolled*12-11];
+
+        animation.runtimeAnimatorController = Resources.Load("Dice/anim/DiceFace" + numberRolled) as RuntimeAnimatorController;
+        Debug.Log(animation.runtimeAnimatorController.name);
+        animation.enabled = true;
+
+        Debug.Log(numberRolled*12-1);
     }
     //--------------------------------------------------------------------------------------------------------
 
