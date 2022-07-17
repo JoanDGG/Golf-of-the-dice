@@ -155,10 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StrokePower: 50
-<<<<<<< HEAD
-=======
   turn: 1
->>>>>>> f95c389fc37b6294be6ad4d2ec70f0abf591c69a
   numberStrokes: 0
 --- !u!58 &1825310596909565547
 CircleCollider2D:
