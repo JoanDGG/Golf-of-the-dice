@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Photon.Pun;
-using Photon.Realtime;
 
-public class DieMovement : MonoBehaviourPunCallbacks
+public class DieMovement : MonoBehaviour
 {
 
     //-------------------------------------
@@ -29,6 +27,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Components
     private GameObject arrow;
     private Rigidbody2D rb2d;
+    private TurnManager TurnManager;
     //-------------------------------------
     private Animator animation;
     private GameObject ObstaclesIndicator;
@@ -49,11 +48,10 @@ public class DieMovement : MonoBehaviourPunCallbacks
         animation = GetComponent<Animator>();
         //-------------------------------------
 
-        arrow = GameObject.Find("ArrowRotation");
+        arrow = gameObject.transform.Find("ArrowRotation").gameObject;
         arrow.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
-        
-        foreach(Player player in PhotonNetwork.PlayerList) { Debug.Log(player); }
+        TurnManager = GameObject.Find("Main Camera").GetComponent<TurnManager>();
     }
 
     // Update is called once per frame
@@ -178,6 +176,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
                 g.SetActive(false);
             }
         }
+
+        TurnManager.nextTurn();
         //-------------------------------------
         CleanIndicators();
 
@@ -218,5 +218,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
         ObstaclesIndicator= GameObject.Find("Off-" + diceNumber.ToString());
         animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
         animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/On" + diceNumber.ToString()) as RuntimeAnimatorController;
+        
     }
+
+    
 }
