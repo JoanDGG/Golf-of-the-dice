@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectDice : MonoBehaviour
 {
     private Sprite[] diceSides;
     private SpriteRenderer rend;
 
-    
     private void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -34,5 +34,6 @@ public class SelectDice : MonoBehaviour
         }
         finalSide = randomDiceSide + 1;
         Debug.Log(finalSide);
+        SceneManager.LoadScene("SampleScene");
     }
 }
