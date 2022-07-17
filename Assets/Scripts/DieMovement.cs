@@ -114,7 +114,7 @@ public class DieMovement : MonoBehaviour
         // Loop to switch dice sides ramdomly
         // before final side appears. n itterations here.
 
-        int n = 20;
+        int n = 10;
 
         for (int i = 0; i <= n; i++)
         {
