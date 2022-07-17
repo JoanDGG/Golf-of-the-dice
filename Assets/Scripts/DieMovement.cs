@@ -59,8 +59,8 @@ public class DieMovement : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
-        {
+        //if(view.IsMine && turn == PhotonNetwork.LocalPlayer.ActorNumber)
+        //{
             // Get inputs
             MouseClick = Input.GetMouseButtonDown(0);
             MouseHeld = Input.GetMouseButton(0);
@@ -111,7 +111,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
                 StartCoroutine("RollTheDice");
                 //-------------------------------------
             }
-        }
+        //}
     }
 
     private void Stroke(float x, float y)
