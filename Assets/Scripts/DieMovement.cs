@@ -167,43 +167,19 @@ public class DieMovement : MonoBehaviourPunCallbacks
             yield return new WaitForSeconds(0.05f);
         }
 
-        // Go through all gameobjects
-        string[] tags = {"1", "2", "3", "4", "5", "6"};
-        GameObject[] obj = Resources.FindObjectsOfTypeAll<GameObject>();
-        foreach (GameObject g in obj)
-        {
-            if (g.CompareTag(numberRolled.ToString())) // Activate obstacles according to number rolled
-            {
-                g.SetActive(true);
+        GameObject[] currentObjs = GameObject.FindGameObjectsWithTag(numberRolled.ToString());
+        GameObject[] onObjs = GameObject.FindGameObjectsWithTag("On");
 
-                CleanIndicators();
-                ActivateIndicator(numberRolled);
-            }
-            else if (tags.Contains(g.tag)) // Dectivate obstacles according to number rolled
-            {
-                g.SetActive(false);
-            }
-        }
+        foreach (GameObject obj in onObjs)
+        {
+            obj.SetActive(false);
 
-        CallSetting(); // Next Turn
-        //-------------------------------------
-        CleanIndicators();
-
-        if (numberRolled == 1)
-        {
-            ActivateIndicator(1);
         }
-        else if (numberRolled == 2)
-        {
-            ActivateIndicator(2);
-        }
-        else if (numberRolled == 3)
-        {
-            ActivateIndicator(3);
-        }
+  
+        foreach (GameObject current in currentObjs) {
+            current.transform.GetChild(0).gameObject.SetActive(true);
         
-        //-------------------------------------
-
+        }
     }
 
     private int nextTurn(int currentTurn)
