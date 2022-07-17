@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Hole : MonoBehaviour
 {
@@ -20,14 +21,15 @@ public class Hole : MonoBehaviour
             Rigidbody2D rb2d = other.gameObject.GetComponent<Rigidbody2D>();
             if (Mathf.Abs(rb2d.velocity.x) <= velocityX && Mathf.Abs(rb2d.velocity.y) <= velocityY)
             {
-                ScorePoints();
+                ScorePoints(other.gameObject);
                 Destroy(other.gameObject);
+                SceneManager.LoadScene("MapSelection");
             }
         }
     }
 
-    private void ScorePoints()
+    private void ScorePoints(GameObject die)
     {
-        Debug.Log("Score!!!");
+        Debug.Log("Score!!! " + die.GetComponent<DieMovement>().numberStrokes);
     }
 }

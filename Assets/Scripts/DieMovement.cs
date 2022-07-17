@@ -25,10 +25,12 @@ public class DieMovement : MonoBehaviourPunCallbacks
     public float StrokePower;
     private int numberRolled;
     public static int turn = 1;
+    public int numberStrokes = 0;
 
     // Components
     private GameObject arrow;
     private Rigidbody2D rb2d;
+    private GameObject start;
     //-------------------------------------
     new private Animator animation;
     private GameObject ObstaclesIndicator;
@@ -54,6 +56,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
         arrow.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
         view = GetComponent<PhotonView>();
+        numberStrokes = 0;
     }
 
     // Update is called once per frame
@@ -120,6 +123,7 @@ public class DieMovement : MonoBehaviourPunCallbacks
         numberRolled = Mathf.RoundToInt((Random.value) * 6); // Random number between 0.00 and 6.00
         numberRolled = numberRolled == 0 ? 1 : numberRolled; // If 0 set to 1
         Debug.Log("DICE: " + numberRolled);
+        numberStrokes++;
         StartCoroutine(ChangeEnvironment()); // Acitvate / Deactivate obstacles
     }
     //--------------------------------------------------------------------------------------------------------
