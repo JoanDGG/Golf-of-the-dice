@@ -192,29 +192,12 @@ public class DieMovement : MonoBehaviourPunCallbacks
 
     private void CleanIndicators()
     {
-        ObstaclesIndicator= GameObject.Find("Off-1");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off1") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-2");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off2") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-3");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off3") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-4");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off4") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-5");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off5") as RuntimeAnimatorController;
-
-        ObstaclesIndicator= GameObject.Find("Off-6");
-        animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
-        animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off6") as RuntimeAnimatorController;
+        for (int j = 1; j<7; j++)
+        {
+            ObstaclesIndicator= GameObject.Find("Off-" + j.ToString());
+            animationObstaclesIndicator = ObstaclesIndicator.GetComponent<Animator>();
+            animationObstaclesIndicator.runtimeAnimatorController =  Resources.Load("ObstaclesActivated/Off" + j.ToString()) as RuntimeAnimatorController;
+        }
     }
 
     private void ActivateIndicator(int diceNumber)
