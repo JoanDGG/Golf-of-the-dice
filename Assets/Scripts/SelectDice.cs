@@ -23,7 +23,7 @@ public class SelectDice : MonoBehaviourPunCallbacks
     {
         if (changeScene)
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("GolfingScene");
         }
     }
 

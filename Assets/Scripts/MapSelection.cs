@@ -12,7 +12,7 @@ public class MapSelection : MonoBehaviour
     void Start()
     {
         Debug.Log("Map: " + map);
-        Instantiate(maps[map], new Vector3(0, 0, 0), Quaternion.identity);
+        Instantiate(maps[map], new Vector3(2.5f, -1.5f, 0), Quaternion.identity);
     }
 
     // Update is called once per frame

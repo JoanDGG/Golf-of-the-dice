@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -270,6 +271,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9998b3c7498fb704b9899a1a3a3275a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maps:
+  - {fileID: 5035211436741608615, guid: d660b92a6e7c843cf823456af3c7eb22, type: 3}
+  - {fileID: 2783777782119921228, guid: 0b99b45d660dc487086699683031098c, type: 3}
+  - {fileID: 4204180343929617763, guid: 4d7dde1a0bd7b47ac981de271b1ce2f0, type: 3}
+  - {fileID: 2889860142859464803, guid: 8524e88830f1f4fcba26b2a829bae34a, type: 3}
+  - {fileID: 8433083463086711089, guid: 2a0e842fa7e7a487391475a27d83a08f, type: 3}
+  - {fileID: 8981787846369808197, guid: 22371e5f0c4344bcb98f0c49f122d536, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
