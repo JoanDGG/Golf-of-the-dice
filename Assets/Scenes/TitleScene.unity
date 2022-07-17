@@ -1431,7 +1431,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000009152373}
+  m_AnchoredPosition: {x: 0, y: 0.000033410488}
   m_SizeDelta: {x: 0, y: 432.4}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &807073781
@@ -2718,7 +2718,6 @@ MonoBehaviour:
   roomInput: {fileID: 348482324}
   debugMessage: {fileID: 759271816}
   LoadingText: {fileID: 216373549}
-  roomItemPrefab: {fileID: 4036783223591223974, guid: e7fe57acb6f999a48ab755fb927188a7, type: 3}
   roomItemPrefabList:
   - {fileID: 4036783223591223974, guid: e7fe57acb6f999a48ab755fb927188a7, type: 3}
   - {fileID: 1019054686551466479, guid: 1926972211559074a879a40bdf17f481, type: 3}
