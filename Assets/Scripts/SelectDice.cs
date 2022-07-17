@@ -34,6 +34,7 @@ public class SelectDice : MonoBehaviour
         }
         finalSide = randomDiceSide + 1;
         Debug.Log(finalSide);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene("SampleScene");
     }
 }
