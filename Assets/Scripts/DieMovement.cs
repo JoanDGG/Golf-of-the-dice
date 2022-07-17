@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class DieMovement : MonoBehaviour
+public class DieMovement : MonoBehaviourPunCallbacks
 {
 
     //-------------------------------------
@@ -42,6 +44,8 @@ public class DieMovement : MonoBehaviour
         arrow = GameObject.Find("ArrowRotation");
         arrow.SetActive(false);
         rb2d = GetComponent<Rigidbody2D>();
+        
+        foreach(Player player in PhotonNetwork.PlayerList) { Debug.Log(player); }
     }
 
     // Update is called once per frame
@@ -139,7 +143,7 @@ public class DieMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f); // Delay code execution to allow die to speed up
 
-        // Wait for die to stop
+        // Wait for die to stop moving
         while (Mathf.Abs(rb2d.velocity.x) >= 0.1 || Mathf.Abs(rb2d.velocity.y) >= 0.1)
         {
             yield return new WaitForSeconds(0.05f);
